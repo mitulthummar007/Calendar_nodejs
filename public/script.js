@@ -8,7 +8,6 @@ const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Frida
 
 function loadCalendar() {
   const dt = new Date();
-
   if (navigation != 0) {
     dt.setMonth(new Date().getMonth() + navigation);
   }
@@ -52,7 +51,7 @@ function loadCalendar() {
         dayBox.appendChild(eventDiv);
       }
 
-      dayBox.addEventListener("click", () => {
+      dayBox.addEventListener("dblclick", () => {
         showModal(dateText);
       });
     } else {
@@ -77,12 +76,9 @@ async function buttons() {
       const eventData = await response.json();
       calendarData.push(eventData)
       localStorage.setItem("events", JSON.stringify(calendarData[0]));
-      // You can handle the response data here if needed.
     } else {
       console.error('Failed to save event:', response.statusText);
     }
-
-    // Clear the input field and close the modal
     txtTitle.value = "";
     closeModal();
 
@@ -94,7 +90,7 @@ async function buttons() {
     const title = txtTitle.value.trim();
     if (title) {
       txtTitle.classList.remove("error");
-      const date = clicked; // Make sure "clicked" contains the date you want to save.
+      const date = clicked;
       try {
         await fetch('/notes', {
           method: "POST",
@@ -105,7 +101,7 @@ async function buttons() {
         })
           .then((response) => {
             console.log(response);
-            return response.json(); // Return the parsed JSON from the first `.then` block.
+            return response.json(); 
           })
           .then((data) => {
             events.push({
@@ -143,8 +139,6 @@ async function buttons() {
   });
 
   btnDelete.addEventListener("click", async function () {
-    // alert("Sss")
-    // location.reload();
     try {
       let ID = document.querySelector("#notID").value;
       const response = await fetch(`/Notes/${ID}`, {
@@ -205,3 +199,29 @@ function closeModal() {
 
 buttons();
 loadCalendar();
+
+//--------------select Logic-----------------------
+const yearSelect = document.querySelector("#yearSelect");
+const monthSelect = document.querySelector("#monthSelect");
+const btnShowCalendar = document.querySelector("#btnShowCalendar");
+
+function populateYearDropdown() {
+  const currentYear = new Date().getFullYear();
+  for (let year = currentYear - 33; year <= currentYear + 27; year++) {
+    const option = document.createElement("option");
+    option.value = year;
+    option.textContent = year;
+    yearSelect.appendChild(option);
+  }
+}
+
+populateYearDropdown();
+
+btnShowCalendar.addEventListener("dblclick", () => {
+  const selectedYear = parseInt(yearSelect.value, 10);
+  const selectedMonth = parseInt(monthSelect.value, 10);
+  navigation = (selectedYear - new Date().getFullYear()) * 12 + selectedMonth - new Date().getMonth();
+  
+  loadCalendar();
+});
+

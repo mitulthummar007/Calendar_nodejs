@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calendar</title>
+  <title> Calendar</title>
+  <link rel="icon" href="img.jpg">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
 </head>
@@ -15,9 +16,28 @@
     <div class="header">
       <div id="month"></div>
       <div>
-        <button id="btnBack"><i class="fa fa-angle-left"></i></button>
-        <button id="btnNext"><i class="fa fa-angle-right"></i></button>
+        <select id="yearSelect" class="selected"></select>
+        <select id="monthSelect" class="selected">
+          <option value="0">January</option>
+          <option value="1">February</option>
+          <option value="2">March</option>
+          <option value="3">April</option>
+          <option value="4">May</option>
+          <option value="5">June</option>
+          <option value="6">July</option>
+          <option value="7">August</option>
+          <option value="8">September</option>
+          <option value="9">October</option>
+          <option value="10">November</option>
+          <option value="11">December</option>
+        </select>
+        <button id="btnShowCalendar">Click</button>
       </div>
+      <div>
+        <button id="btnBack" class="backnextbtn"><i class="fa fa-angle-left"></i></button>
+        <button id="btnNext" class="backnextbtn"><i class="fa fa-angle-right"></i></button>
+      </div>
+
     </div>
     <div class="weekdays">
       <div>Sun</div>
@@ -33,19 +53,17 @@
   <div id="modal"></div>
   <div id="addEvent">
     <h2>Add Note</h2>
-    <input type="text" id="txtTitle" placeholder="Add Note" />
+    <input type="text" id="txtTitle" placeholder="Add Note" required />
     <button id="btnSave">Save</button>
-    <!-- <button class="btnEdit">Edit</button> -->
     <button class="btnClose">Close</button>
   </div>
 
   <div id="viewEvent">
     <h2>Note</h2>
     <p id="eventText">This is Sample Note</p>
-    <input type="text" id="notID"  hidden>
-    
+    <input type="text" id="notID" hidden>
+
     <button id="btnDelete">Delete</button>
-    <!-- <button id="btnEdit">Edit</button> -->
     <button class="btnClose">Close</button>
   </div>
 
