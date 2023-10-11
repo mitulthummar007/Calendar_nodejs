@@ -37,7 +37,7 @@ app.delete("/Notes/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const mongoId = new mongoose.Types.ObjectId(id);
-    const deletedNote = await Note.findOneAndDelete({ "_id": mongoId });
+    const deletedNote = await Note.findOneAndRemove({ "_id": mongoId });
 
     if (!deletedNote) {
       return res.status(404).json({ msg: "Note is not found" });
@@ -67,6 +67,47 @@ app.post("/Notes", async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+
+app.put("/Notes/move/:id", async (req, res) => {
+  const { id } = req.params;
+  const { date } = req.body;
+  try {
+    const mongoId = new mongoose.Types.ObjectId(id);
+    const updatedNote = await Note.findByIdAndUpdate(mongoId, { date }, { new: true });
+    if (!updatedNote) {
+      return res.status(404).json({ msg: "Note is not found" });
+    }
+    res.status(200).json({
+      status: "SUCCESS",
+      msg: "Note moved successfully",
+      data: updatedNote,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.put("/Notes/edit/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title } = req.body;
+
+    const mongoId = new mongoose.Types.ObjectId(id);
+    const updatedNote = await Note.findByIdAndUpdate(mongoId, { title }, { new: true });
+    if (updatedNote) {
+      res.status(200).json({
+        status: "SUCCESS",
+        msg: "Note Update successfully",
+        data: updatedNote,
+      });
+    } else {
+      return res.status(404).json({ msg: "Note is not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 const port = process.env.PORT || 2000
 const hostname = process.env.HOST
 

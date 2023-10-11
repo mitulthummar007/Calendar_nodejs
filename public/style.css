@@ -7,10 +7,24 @@
 }
 
 .backnextbtn {
-  width: 70px;
+  width: 50px;
   border-radius: 70px;
 }
 
+#btntoDay {
+  font-size: 16px;
+  border: 1px solid #ccc;
+  padding: 3px;
+  margin: 5px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 5px;
+  width: 80px;
+}
+#editTitle{
+  width: 100%;
+  resize: none;
+}
 body {
   width: 100vw;
   height: 100vh;
@@ -21,13 +35,17 @@ body {
 }
 
 .selected {
-  font-size: 16px;
+  font-size: 12px;
   border: 1px solid #ccc;
   padding: 3px;
   margin: 5px;
   background-color: #000000;
   color: #ffffff;
   border-radius: 5px;
+}
+
+#btntoDay {
+  height: 30px;
 }
 
 .selected button {
@@ -67,8 +85,9 @@ body {
 
 .header #month {
   color: #000000;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 600;
+  margin-top: 10px;
 }
 
 button {
@@ -82,7 +101,10 @@ button {
 }
 
 .header button {
-  background-color: #000000;
+  background-color: #ffffff;
+  color: black;
+  border: hidden;
+  font-size: 21px;
 }
 
 .weekdays {
@@ -102,9 +124,12 @@ button {
   box-shadow: 1px 2px 3px #000000;
   border-radius: 10px;
 }
-#btnShowCalendar{
+
+#btnShowCalendar {
+  font-size: 12px;
   background-color: #0f0cc1;
 }
+
 #calendar {
   width: 100%;
   margin: auto;
@@ -195,6 +220,7 @@ button {
   outline: none;
   border: 1px solid #cbd4c2;
   font-size: 16px;
+  height: auto;
 }
 
 #btnSave {
@@ -205,7 +231,8 @@ button {
   background-color: #2f3542;
 }
 
-.btnEdit {
+#btnEdit {
+  width: 62px;
   background-color: rgb(78, 78, 255);
 }
 

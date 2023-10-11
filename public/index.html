@@ -13,8 +13,13 @@
 
 <body>
   <div class="container">
-    <div class="header">
-      <div id="month"></div>
+    <div class="header" style="display: flex; align-items: center;">
+      <div> <button id="btntoDay">Today</button></div>
+      <div style="display: flex;">
+        <button id="btnBack" class="backnextbtn"><i class="fa fa-angle-left"></i></button>
+        <div id="month"></div>
+        <button id="btnNext" class="backnextbtn"><i class="fa fa-angle-right"></i></button>
+      </div>
       <div>
         <select id="yearSelect" class="selected"></select>
         <select id="monthSelect" class="selected">
@@ -31,11 +36,6 @@
           <option value="10">November</option>
           <option value="11">December</option>
         </select>
-        <button id="btnShowCalendar">Click</button>
-      </div>
-      <div>
-        <button id="btnBack" class="backnextbtn"><i class="fa fa-angle-left"></i></button>
-        <button id="btnNext" class="backnextbtn"><i class="fa fa-angle-right"></i></button>
       </div>
 
     </div>
@@ -53,16 +53,19 @@
   <div id="modal"></div>
   <div id="addEvent">
     <h2>Add Note</h2>
-    <input type="text" id="txtTitle" placeholder="Add Note" required />
-    <button id="btnSave">Save</button>
-    <button class="btnClose">Close</button>
+    <textarea type="text" id="txtTitle" rows="1"></textarea>
+    <div>
+      <button id="btnSave">Save</button>
+      <button class="btnClose">Close</button>
+    </div>
   </div>
 
   <div id="viewEvent">
     <h2>Note</h2>
-    <p id="eventText">This is Sample Note</p>
+    <p id="eventText">This is Sample Note</p><br>
     <input type="text" id="notID" hidden>
 
+    <button id="btnEdit">Edit</button>
     <button id="btnDelete">Delete</button>
     <button class="btnClose">Close</button>
   </div>
