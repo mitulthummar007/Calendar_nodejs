@@ -192,10 +192,7 @@ async function buttons() {
         });
 
         if (response.status === 200) {
-          const eventData = await response.json();
-          console.log('Event edited:', eventData);
-
-          // Update the note's text
+          const eventData = await response.json();``
           inputField.replaceWith(eventText);
           eventText.innerText = editedTitle;
 
@@ -331,7 +328,7 @@ const storedMonth = localStorage.getItem('selectedMonth');
 
 if (storedYear && storedMonth) {
   yearSelect.value = storedYear;
-  monthSelect.value = storedMonth;
+  monthSelect.value = storedMonth;  
   updateCalendar();
 } else {
   loadCalendar();
